@@ -3,10 +3,9 @@
 #include "desktop_session_status.h"
 
 bool IsLockedOrOnScreensaver() {
-    bool out = false;
     CFDictionaryRef sessionDict = CGSessionCopyCurrentDictionary();
     if (sessionDict == NULL) {
-        return out;
+        return false;
     }
     CFBooleanRef sessionScreenIsLockedRef = (CFBooleanRef)CFDictionaryGetValue(sessionDict, CFSTR("CGSSessionScreenIsLocked"));
     bool sessionScreenIsLocked = sessionScreenIsLockedRef ? CFBooleanGetValue(sessionScreenIsLockedRef) : false;
